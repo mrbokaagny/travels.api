@@ -2,6 +2,7 @@ package api.transporycompagny.travels.domains;
 
 import java.util.List;
 
+import api.transporycompagny.travels.utils.AbstractDateTime;
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -15,7 +16,7 @@ import jakarta.persistence.Table;
 
 @Entity
 @Table(name = "companies")
-public class Company {
+public class Company extends AbstractDateTime {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -33,7 +34,7 @@ public class Company {
     @Column(name = "is_actived")
     private boolean is_actived;
 
-    @Column(name = "reference" , nullable = false)
+    @Column(name = "reference", nullable = false)
     private String reference;
 
     @Column(name = "cover_link")
@@ -52,16 +53,22 @@ public class Company {
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "company")
     private List<Car> car;
 
+    @OneToMany(mappedBy = "company", cascade = CascadeType.ALL)
+    private List<StartALine> start_a_line;
+
+    @OneToMany(mappedBy = "company", cascade = CascadeType.ALL)
+    private List<Destination> destinations;
+
     public Company() {
     }
 
     public Company(String name, Number number_of_car, Number number_of_line, City city, String longitude,
-            String latitude , String reference) {
+            String latitude, String reference) {
         this.name = name;
         this.is_actived = true;
         this.number_of_car = number_of_car;
         this.number_of_line = number_of_line;
-        this.reference = reference ;
+        this.reference = reference;
         this.cover_link = "company.jpg";
         this.latitude = latitude;
         this.longitude = longitude;
@@ -148,9 +155,9 @@ public class Company {
         this.city = city;
     }
 
-    public List<Car> getCar() {
-        return car;
-    }
+    // public List<Car> getCar() {
+    // return car;
+    // }
 
     public void setCar(List<Car> car) {
         this.car = car;

@@ -1,11 +1,15 @@
 package api.transporycompagny.travels.domains;
 
+import java.util.List;
+
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
 
@@ -30,13 +34,11 @@ public class Car {
     @JoinColumn(name = "company_key")
     private Company company;
 
-
-    
+    @OneToMany(mappedBy = "car" , cascade = CascadeType.ALL)
+    private List<StartALine> start_a_line;
 
     public Car() {
     }
-
-    
 
     public Car(String matricule, Number number_of_place, String libelle, Company company) {
         this.matricule = matricule;
@@ -44,8 +46,6 @@ public class Car {
         this.libelle = libelle;
         this.company = company;
     }
-
-
 
     public Long getCar_key() {
         return car_key;
@@ -87,5 +87,4 @@ public class Car {
         this.company = company;
     }
 
-    
 }

@@ -1,7 +1,5 @@
 package api.transporycompagny.travels.utils;
 
-import java.util.List;
-
 import org.json.simple.JSONObject;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -11,12 +9,12 @@ public class ResponseApi {
     private String error;
     private String status;
     private String message;
-    private List<?> data;
+    private Object data;
 
     public ResponseApi() {
     }
 
-    public ResponseApi(String error, String status, String message, List<?> data) {
+    public ResponseApi(String error, String status, String message, Object data) {
         this.error = error;
         this.status = status;
         this.message = message;
@@ -35,7 +33,7 @@ public class ResponseApi {
         this.message = message;
     }
 
-    public void setData(List<?> data) {
+    public void setData(Object data) {
         this.data = data;
     }
 
@@ -51,11 +49,11 @@ public class ResponseApi {
         return this.status;
     }
 
-    public List<?> getData() {
+    public Object getData() {
         return this.data;
     }
 
-    public void hydrateData(String error, String message, String status, List<?> data) {
+    public void hydrateData(String error, String message, String status, Object data) {
         this.setData(data);
         this.setError(error);
         this.setStatus(status);

@@ -36,7 +36,7 @@ public class RoleControlleur {
             Role tmpData = roleRepository.findByLibelle(role.getLibelle());
             if (tmpData == null) {
                 roleRepository.save(role);
-                this.apiResponse.hydrateData("NONE", "Created role in successully .", "success",
+                this.apiResponse.hydrateData("NONE", "Created role is successully .", "success",
                         null);
                 return new ResponseEntity<>(this.apiResponse.buildJson(), HttpStatus.OK);
             } else {

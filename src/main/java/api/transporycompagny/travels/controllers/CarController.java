@@ -6,6 +6,7 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -21,6 +22,7 @@ import api.transporycompagny.travels.repositorys.CompanyRepository;
 import api.transporycompagny.travels.utils.ResponseApi;
 
 @RestController
+@CrossOrigin(origins = "*")
 @RequestMapping("/api/car")
 public class CarController {
 
@@ -35,7 +37,7 @@ public class CarController {
     @GetMapping("/listing")
     public ResponseEntity<?> getAllCar() {
         Iterable<Car> data = carRepository.findAll();
-        this.apiResponse.hydrateData("NONE", "List of all companies .", "success",
+        this.apiResponse.hydrateData("NONE", "List of all cars .", "success",
                 (List<Car>) data);
         return new ResponseEntity<>(this.apiResponse.buildJson(), HttpStatus.OK);
     }
@@ -79,7 +81,7 @@ public class CarController {
                     Car car_save = new Car(car.getMatricule(), car.getNumber_of_place(), car.getLibelle(),
                             tmp_data.get());
                     carRepository.save(car_save);
-                    this.apiResponse.hydrateData("NONE", "Car created is successfully .", "success",
+                    this.apiResponse.hydrateData("NONE", "Created car is successfully .", "success",
                             null);
                     return new ResponseEntity<>(this.apiResponse.buildJson(), HttpStatus.OK);
                 } else {

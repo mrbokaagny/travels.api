@@ -73,7 +73,7 @@ public class SettingController {
             Country tmp_data = countryResponsitory.findByLibelle(country.getLibelle());
             if (tmp_data == null) {
                 countryResponsitory.save(country);
-                this.apiResponse.hydrateData("NONE", "Created country in successully .", "success",
+                this.apiResponse.hydrateData("NONE", "Created country is successully .", "success",
                         null);
                 return new ResponseEntity<>(this.apiResponse.buildJson(), HttpStatus.OK);
             } else {
@@ -109,7 +109,7 @@ public class SettingController {
                 } else {
                     City city_save = new City(city.getLibelle(), current_country.get());
                     cityRepository.save(city_save);
-                    this.apiResponse.hydrateData("NONE", "Created city in successully .", "success",
+                    this.apiResponse.hydrateData("NONE", "Created city is successully .", "success",
                             null);
                     return new ResponseEntity<>(this.apiResponse.buildJson(), HttpStatus.OK);
                 }

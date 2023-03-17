@@ -81,9 +81,8 @@ public class CompanyController {
                 Company compagny_save = new Company(company.getName(), company.getNumber_of_car(),
                         company.getNumber_of_line(), tmp_data.get(), company.getLongitude(), company.getLatitude(),
                         uuid.toString());
-                companyRepository.save(compagny_save);
-                this.apiResponse.hydrateData("NONE", "Created city in successully .", "success",
-                        null);
+                Company saved = companyRepository.save(compagny_save);
+                this.apiResponse.hydrateData("NONE", "Created compagny is successully .", "success", saved);
                 return new ResponseEntity<>(this.apiResponse.buildJson(), HttpStatus.OK);
             }
         } catch (Exception e) {

@@ -42,6 +42,10 @@ public class Login implements UserDetails {
     @JoinColumn(name = "role_key")
     private Role role;
 
+    @ManyToOne
+    @JoinColumn(name = "function_key")
+    private Function function;
+
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
         return List.of(new SimpleGrantedAuthority(this.role.getLibelle()));
@@ -50,10 +54,13 @@ public class Login implements UserDetails {
     public Login() {
     }
 
-    public Login(String password, String login, boolean is_actived, User user, Role role) {
+
+
+    public Login(String password, String login, boolean is_actived, User user, Role role , Function function) {
         this.password = password;
         this.login = login;
         this.is_actived = is_actived;
+        this.function = function ;
         this.user = user;
         this.role = role;
     }
@@ -86,6 +93,14 @@ public class Login implements UserDetails {
     @Override
     public boolean isEnabled() {
         return true;
+    }
+
+    public Function getFunction() {
+        return function;
+    }
+
+    public void setFunction(Function function) {
+        this.function = function;
     }
 
 }

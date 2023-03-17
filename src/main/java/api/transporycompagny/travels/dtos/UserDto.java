@@ -8,18 +8,22 @@ public class UserDto {
     private String number;
     private Long role_key;
     private String password;
+    private Long function_key ;
 
     public UserDto() {
     }
 
-    public UserDto(String name, String surname, String login, String number, Long role_key, String password) {
+    public UserDto(String name, String surname, String login, String number, Long role_key, String password , Long function_key) {
         this.name = name;
         this.surname = surname;
         this.login = login;
         this.number = number;
         this.role_key = role_key;
         this.password = password;
+        this.function_key = function_key ;
     }
+
+    
 
     public String getName() {
         return name;
@@ -67,6 +71,14 @@ public class UserDto {
 
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    public Long getFunction_key() {
+        return function_key;
+    }
+
+    public void setFunction_key(Long function_key) {
+        this.function_key = function_key;
     }
 
 }
